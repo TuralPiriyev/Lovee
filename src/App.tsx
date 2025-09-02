@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Calendar, MapPin, Star, Music } from 'lucide-react';
+import { Heart, Calendar, MapPin, Star, Music, Map, Globe } from 'lucide-react';
+
+// ---------------- Images: Vite-friendly automatic import ----------------
+// This will collect all files matching ./images/photo*.jpg|png|jpeg inside src/images
+// and return URL strings (works with Vite).
+const images = Object.entries(
+  import.meta.glob('./images/photo*.{jpg,png,jpeg}', { eager: true, as: 'url' })
+)
+  // sort by filename so photo1, photo2, ... order is preserved
+  .sort(([aPath], [bPath]) => aPath.localeCompare(bPath, undefined, { numeric: true }))
+  .map(([_, url]) => url as string);
+// -------------------------------------------------------------------------
 
 interface FloatingHeart {
   id: number;
@@ -213,6 +224,240 @@ function App() {
           </div>
         </section>
 
+        {/* Distance Love Map Section */}
+        <section className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16 font-dancing">
+              Uzaq Məsafəli Sevgimiz
+            </h2>
+            
+            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 shadow-2xl border border-white/20">
+              <div className="relative flex items-center justify-between flex-col lg:flex-row gap-12">
+                
+                {/* Baku - Tural */}
+                <div className="flex flex-col items-center relative group">
+                  <div className="relative mb-4">
+                    {/* Speech Bubble */}
+                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-4 py-2 rounded-2xl shadow-lg font-semibold text-sm whitespace-nowrap animate-bounce">
+                      Yerim seniii! 😍
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
+                        <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-transparent border-t-cyan-400"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Character Figure - Tural */}
+                    <div className="w-24 h-24 bg-gradient-to-b from-amber-600 to-amber-800 rounded-full relative shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                      {/* Hair */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-20 h-16 bg-gray-800 rounded-t-full"></div>
+                      {/* Eyes */}
+                      <div className="absolute top-6 left-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      <div className="absolute top-6 right-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      {/* Smile */}
+                      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-8 h-4 border-2 border-gray-800 border-t-0 rounded-b-full"></div>
+                      {/* Body */}
+                      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-16 h-20 bg-gray-800 rounded-t-lg"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-white mb-2 font-dancing">Tural</h3>
+                    <div className="flex items-center text-blue-200 mb-2">
+                      <MapPin className="w-5 h-5 mr-2" />
+                      <span className="text-lg">Bakı, Azərbaycan</span>
+                    </div>
+                    <div className="bg-blue-500/30 backdrop-blur-sm rounded-full px-4 py-2 border border-blue-300/50">
+                      <span className="text-blue-100 text-sm font-medium">🇦🇿 GMT+4</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connection Line with Hearts */}
+                <div className="flex-1 flex items-center justify-center relative lg:mx-8">
+                  <div className="hidden lg:flex items-center justify-center w-full">
+                    <div className="flex-1 h-0.5 bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 relative">
+                      <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 text-pink-300 animate-pulse">💕</div>
+                      <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 text-purple-300 animate-pulse" style={{ animationDelay: '0.5s' }}>✨</div>
+                      <div className="absolute top-1/2 left-3/4 transform -translate-y-1/2 text-pink-300 animate-pulse" style={{ animationDelay: '1s' }}>💖</div>
+                    </div>
+                  </div>
+                  
+                  {/* Distance Info */}
+                  <div className="bg-white/15 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/30 text-center lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
+                    <Globe className="w-8 h-8 mx-auto mb-3 text-yellow-300" />
+                    <p className="text-white font-bold text-lg">~6,500 km</p>
+                    <p className="text-white/80 text-sm">uzaqlıq</p>
+                    <p className="text-pink-200 text-xs mt-2">❤️ Amma sıfır sevgi məsafəsi ❤️</p>
+                  </div>
+                </div>
+
+                {/* Incheon - Səkinə */}
+                <div className="flex flex-col items-center relative group">
+                  <div className="relative mb-4">
+                    {/* Speech Bubble */}
+                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-pink-400 to-purple-400 text-white px-4 py-2 rounded-2xl shadow-lg font-semibold text-sm whitespace-nowrap animate-bounce" style={{ animationDelay: '0.5s' }}>
+                      Yeseneee! 💖
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
+                        <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-transparent border-t-purple-400"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Character Figure - Səkinə */}
+                    <div className="w-24 h-24 bg-gradient-to-b from-pink-300 to-rose-400 rounded-full relative shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                      {/* Hair */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-20 h-16 bg-amber-600 rounded-t-full"></div>
+                      {/* Eyes */}
+                      <div className="absolute top-6 left-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      <div className="absolute top-6 right-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      {/* Eyelashes */}
+                      <div className="absolute top-5 left-4 w-1 h-1 bg-gray-800 rounded-full transform rotate-45"></div>
+                      <div className="absolute top-5 right-4 w-1 h-1 bg-gray-800 rounded-full transform -rotate-45"></div>
+                      {/* Smile */}
+                      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-8 h-4 border-2 border-gray-800 border-t-0 rounded-b-full"></div>
+                      {/* Body */}
+                      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-16 h-20 bg-white rounded-t-lg"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-white mb-2 font-dancing">Səkinə</h3>
+                    <div className="flex items-center text-purple-200 mb-2">
+                      <MapPin className="w-5 h-5 mr-2" />
+                      <span className="text-lg">İnçeon, Cənubi Koreya</span>
+                    </div>
+                    <div className="bg-purple-500/30 backdrop-blur-sm rounded-full px-4 py-2 border border-purple-300/50">
+                      <span className="text-purple-100 text-sm font-medium">🇰🇷 GMT+9</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Love Quote for Distance */}
+              <div className="mt-12 text-center">
+                <p className="text-white/90 text-xl md:text-2xl font-light italic">
+                  "Sevgi uzaqlığı qısaldır, vaxtı dayandırır" 💫
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Distance Love Map Section */}
+        <section className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16 font-dancing">
+              Uzaq Məsafəli Sevgimiz
+            </h2>
+            
+            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 shadow-2xl border border-white/20">
+              <div className="relative flex items-center justify-between flex-col lg:flex-row gap-12">
+                
+                {/* Baku - Tural */}
+                <div className="flex flex-col items-center relative group">
+                  <div className="relative mb-4">
+                    {/* Speech Bubble */}
+                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-4 py-2 rounded-2xl shadow-lg font-semibold text-sm whitespace-nowrap animate-bounce">
+                      Yeseneee! 😍
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
+                        <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-transparent border-t-cyan-400"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Character Figure - Tural */}
+                    <div className="w-24 h-24 bg-gradient-to-b from-amber-600 to-amber-800 rounded-full relative shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                      {/* Hair */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-20 h-16 bg-gray-800 rounded-t-full"></div>
+                      {/* Eyes */}
+                      <div className="absolute top-6 left-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      <div className="absolute top-6 right-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      {/* Smile */}
+                      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-8 h-4 border-2 border-gray-800 border-t-0 rounded-b-full"></div>
+                      {/* Body */}
+                      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-16 h-20 bg-gray-800 rounded-t-lg"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-white mb-2 font-dancing">Tural</h3>
+                    <div className="flex items-center text-blue-200 mb-2">
+                      <MapPin className="w-5 h-5 mr-2" />
+                      <span className="text-lg">Bakı, Azərbaycan</span>
+                    </div>
+                    <div className="bg-blue-500/30 backdrop-blur-sm rounded-full px-4 py-2 border border-blue-300/50">
+                      <span className="text-blue-100 text-sm font-medium">🇦🇿 GMT+4</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connection Line with Hearts */}
+                <div className="flex-1 flex items-center justify-center relative lg:mx-8">
+                  <div className="hidden lg:flex items-center justify-center w-full">
+                    <div className="flex-1 h-0.5 bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 relative">
+                      <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 text-pink-300 animate-pulse">💕</div>
+                      <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 text-purple-300 animate-pulse" style={{ animationDelay: '0.5s' }}>✨</div>
+                      <div className="absolute top-1/2 left-3/4 transform -translate-y-1/2 text-pink-300 animate-pulse" style={{ animationDelay: '1s' }}>💖</div>
+                    </div>
+                  </div>
+                  
+                  {/* Distance Info */}
+                  <div className="bg-white/15 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/30 text-center lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2">
+                    <Globe className="w-8 h-8 mx-auto mb-3 text-yellow-300" />
+                    <p className="text-white font-bold text-lg">~6,500 km</p>
+                    <p className="text-white/80 text-sm">uzaqlıq</p>
+                    <p className="text-pink-200 text-xs mt-2">❤️ Amma sıfır sevgi məsafəsi ❤️</p>
+                  </div>
+                </div>
+
+                {/* Incheon - Səkinə */}
+                <div className="flex flex-col items-center relative group">
+                  <div className="relative mb-4">
+                    {/* Speech Bubble */}
+                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-pink-400 to-purple-400 text-white px-4 py-2 rounded-2xl shadow-lg font-semibold text-sm whitespace-nowrap animate-bounce" style={{ animationDelay: '0.5s' }}>
+                      Yerimm seniii! 💖
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
+                        <div className="w-0 h-0 border-l-4 border-r-4 border-t-8 border-transparent border-t-purple-400"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Character Figure - Səkinə */}
+                    <div className="w-24 h-24 bg-gradient-to-b from-pink-300 to-rose-400 rounded-full relative shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                      {/* Hair */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-20 h-16 bg-amber-600 rounded-t-full"></div>
+                      {/* Eyes */}
+                      <div className="absolute top-6 left-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      <div className="absolute top-6 right-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                      {/* Eyelashes */}
+                      <div className="absolute top-5 left-4 w-1 h-1 bg-gray-800 rounded-full transform rotate-45"></div>
+                      <div className="absolute top-5 right-4 w-1 h-1 bg-gray-800 rounded-full transform -rotate-45"></div>
+                      {/* Smile */}
+                      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-8 h-4 border-2 border-gray-800 border-t-0 rounded-b-full"></div>
+                      {/* Body */}
+                      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-16 h-20 bg-white rounded-t-lg"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-white mb-2 font-dancing">Səkinə</h3>
+                    <div className="flex items-center text-purple-200 mb-2">
+                      <MapPin className="w-5 h-5 mr-2" />
+                      <span className="text-lg">İnçeon, Cənubi Koreya</span>
+                    </div>
+                    <div className="bg-purple-500/30 backdrop-blur-sm rounded-full px-4 py-2 border border-purple-300/50">
+                      <span className="text-purple-100 text-sm font-medium">🇰🇷 GMT+9</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Love Quote for Distance */}
+              <div className="mt-12 text-center">
+                <p className="text-white/90 text-xl md:text-2xl font-light italic">
+                  "Sevgi uzaqlığı qısaldır, vaxtı dayandırır" 💫
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Love Messages */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
@@ -242,16 +487,16 @@ function App() {
             <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16 font-dancing">
               Xatirələrimiz
             </h2>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+              {images.map((src, i) => (
                 <div
                   key={i}
                   className="aspect-square bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 flex items-center justify-center group hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
                 >
                   <img
-                    src={`https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=1`}
-                    alt={`Xatirəmiz ${i}`}
+                    src={src}
+                    alt={`Xatirəmiz ${i + 1}`}
                     className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -403,6 +648,15 @@ function App() {
           }
         }
         
+        @keyframes pulse-heart {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+        
         .animate-gradient-x {
           background-size: 200% 200%;
           animation: gradient-x 8s ease infinite;
@@ -410,6 +664,23 @@ function App() {
         
         .animate-fade-in {
           animation: fade-in 1s ease-out 0.5s both;
+        }
+        
+        @keyframes pulse-heart {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+        
+        .animate-pulse-heart {
+          animation: pulse-heart 2s ease-in-out infinite;
+        }
+        
+        .animate-pulse-heart {
+          animation: pulse-heart 2s ease-in-out infinite;
         }
         
         .font-dancing {
