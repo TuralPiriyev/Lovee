@@ -7,4 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  base: '/Love/', // GitHub Pages üçün repo adı
 });
